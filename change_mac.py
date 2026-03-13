@@ -9,6 +9,10 @@ def get_arguments():
     parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address.")
     parser.add_option("-v", "--view", dest="view", help="enter True for View result")
     (opt, args) = parser.parse_args()
+    if not opt.interface:
+        parser.error("[-] Please specify an interface, use --help for more info")
+    elif not opt.new_mac:
+        parser.error("[-] Please specify a new MAC Address, use --help for more info")
     return opt
 
 def change_mac(interface, new_mac, view):
