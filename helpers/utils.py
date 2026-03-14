@@ -13,7 +13,7 @@ def get_current_mac(interface):
     # 1. Execute and read ifconfig
     ifconfig_result = subprocess.check_output(["ifconfig", interface])
     ifconfig_result = ifconfig_result.decode("utf-8")
-    print("Here is our current ifconfig for " + interface + " " + ifconfig_result)
+    print(interface + " current ifconfig -- " + ifconfig_result)
     # 2. Read the MAC address from input, use Regex
     mac_address_search_result = re.search(r"(\w\w:){5}(\w\w)", ifconfig_result)
     if mac_address_search_result:
