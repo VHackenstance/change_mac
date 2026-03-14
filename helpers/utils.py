@@ -6,6 +6,25 @@ def is_valid_mac(mac: str) -> bool:
     pattern = r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
     return bool(re.fullmatch(pattern, mac))
 
+def get_current_mac(interface):
+    # 1. Execute and read ifconfig
+    ifconfig_result = subprocess.check_output(["ifconfig", interface], text=True)
+    print("Here is our current ifconfig for " + interface + " " + ifconfig_result)
+    # 2. Read the MAC address from input, use Regex
+    mac_address_search_result = re.search(r"(\w\w:){5}(\w\w)", ifconfig_result)
+    current_mac = mac_address_search_result.group(0)
+    return current_mac
+
+def check_mac_address_updated(options, get_mac) -> str:
+    current_mac = get_mac(options.interface)
+    # 3. Check if MAC in ifconfig is what the user requested
+    if options.new_mac == current_mac:
+        # 4. Print appropriate message
+        print("Requested MAC: " + options.new_mac + ". Current MAC Address: " + current_mac)
+        print("MAC Address successfully updated to new MAC")
+    else:
+        print("No MAC Address update occurred")
+
 def get_arguments(is_valid_new):
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address.")
