@@ -2,10 +2,11 @@ import subprocess
 import optparse
 import re
 
-def get_arguments():
-    def is_valid_mac(mac: str) -> bool:
-        pattern = r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
-        return bool(re.fullmatch(pattern, mac))
+def is_valid_mac(mac: str) -> bool:
+    pattern = r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
+    return bool(re.fullmatch(pattern, mac))
+
+def get_arguments(is_valid_new):
     parser = optparse.OptionParser()
     parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address.")
     parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address.")
@@ -15,7 +16,7 @@ def get_arguments():
         parser.error("[-] Please specify an interface, use --help for more info")
     elif not opt.new_mac:
         parser.error("[-] Please specify a new MAC Address, use --help for more info")
-    is_valid = is_valid_mac(opt.new_mac)
+    is_valid = is_valid_new(opt.new_mac)
     if not is_valid:
         parser.error("[-] Please use the correct syntax for the new MAC address [XX:XX:XX:XX:XX:XX]")
     return opt
