@@ -1,5 +1,4 @@
 #/usr/bin/env python
-
 import platform
 
 def get_os_name():
