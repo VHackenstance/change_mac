@@ -1,10 +1,9 @@
 #/usr/bin/env python
 from helpers.utils import get_arguments, is_valid_mac, change_mac, check_mac_address_updated, get_current_mac
-from helpers.detect_os import get_os_name
+# from helpers.detect_os import get_os_name
 
-# test changes
 # Return the name of the OS so we know which way to proceed
-get_os_name()
+# get_os_name()
 # Get the interface and new MAC values from the user.  Store them in options.
 options = get_arguments(is_valid_mac)
 # Update the MAC Address for the specified interface.
