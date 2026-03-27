@@ -9,19 +9,19 @@ def mac_changer_single_function():
     parser.add_argument("-i", "--interface", dest="interface", help="Interface to change MAC address.")
     parser.add_argument("-m", "--mac", dest="new_mac", help="New MAC address.")
     parser.add_argument("-v", "--view", dest="view", help="enter True for View result")
-    (opt, args) = parser.parse_args()
-    if not opt.interface:
+    options = parser.parse_args()
+    if not options.interface:
         parser.error("[-] Please specify an interface, use --help for more info")
-    elif not opt.new_mac:
+    elif not options.new_mac:
         parser.error("[-] Please specify a new MAC Address, use --help for more info")
     pattern = r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
-    valid_mac = bool(re.search(pattern, opt.new_mac))
+    valid_mac = bool(re.search(pattern, options.new_mac))
     if not valid_mac:
         parser.error("[-] Please use the correct format for the new MAC Address [XX:XX:XX:XX:XX:XX]")
-    print(opt)
-    interface = opt.interface
-    new_mac = opt.new_mac
-    view = opt.view
+    print(options)
+    interface = options.interface
+    new_mac = options.new_mac
+    view = options.view
     print("\n[+] Changing MAC address for " + interface + " to " + new_mac)
     subprocess.call(["ifconfig", interface, "down"])
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
@@ -39,3 +39,6 @@ def mac_changer_single_function():
         print("\n[+] MAC Address successfully changed to: " + current_mac)
     else:
         print("No MAC Address update occurred")
+
+# To test this script uncomment
+# mac_changer_single_function()
