@@ -1,6 +1,6 @@
 #/usr/bin/env python
 import subprocess
-import optparse
+import argparse
 import re
 
 # Check to see if a MAC Address has a valid format.
@@ -37,10 +37,10 @@ def check_mac_address_updated(options, get_mac):
 # Get a value from the user for the new MAC address.
 # Check the new MAC Address provided is in a valid format.
 def get_arguments(is_valid_new):
-    parser = optparse.OptionParser()
-    parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address.")
-    parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address.")
-    parser.add_option("-v", "--view", dest="view", help="enter True for View result")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--interface", dest="interface", help="Interface to change MAC address.")
+    parser.add_argument("-m", "--mac", dest="new_mac", help="New MAC address.")
+    parser.add_argument("-v", "--view", dest="view", help="enter True for View result")
     (opt, args) = parser.parse_args()
     if not opt.interface:
         parser.error("[-] Please specify an interface, use --help for more info")

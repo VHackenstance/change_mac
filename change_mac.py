@@ -3,8 +3,9 @@
 # from helpers.utils_single_function import mac_changer_single_function
 # mac_changer_single_function()
 
-from helpers.utils import (get_arguments, is_valid_mac, change_mac,
-                           check_mac_address_updated, get_current_mac)
+from helpers.utils import (
+    get_arguments, is_valid_mac, change_mac,
+    check_mac_address_updated, get_current_mac)
 
 # Get the interface and new MAC values from the user.  Store them in options.
 options = get_arguments(is_valid_mac)
