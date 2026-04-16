@@ -1,6 +1,7 @@
 <h1>change_mac.py</h1>
 <p>Python script, works with all Python versions currently.</p>
-<p>Create and tested in Linux, no compatibility Windows or MacOS.</p>
+<p>Create and tested in Linux.<br/>
+No compatibility Windows.</p>
 <p>Basic help is available if you run the script with --help</p>
 <h4>$ python mac_changer.py --help</h4>
 <p>To run the script please provide arguments in the following format. 
